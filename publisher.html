@@ -83,13 +83,35 @@ Sed facilisis aliquet tellus ut molestie. Duis ac lectus velit. Curabitur dui an
 	overlayStyle.backgroundSize = "100% 100%";
 	//by default element is hidden
 	overlayStyle.display = "none";
+	//append the overlay to the body
 	document.body.appendChild(overlay);
+
+	//create close element and add style
+	var close = document.createElement('img');
+	close.src = "close_cross_official.svg";
+	close.alt = "close";
+	var closeStyle = close.style;
+	closeStyle.position = "absolute";
+	closeStyle.top = "10px";
+	closeStyle.right = "10px";
+	//add click event on close element
+	close.addEventListener("click",overlayClose)
+	//append the close lement to the overlay
+	overlay.appendChild(close);
 
 	//click event on smartFooter makes is a full page overlay
 	function smartFooterClick(){
 		smartFooterStyle.display = "none";
 		overlayStyle.display = "block";
 		document.body.style.overflowY="hidden";
+	}
+
+	function overlayClose(e){
+		//to stop this event from bubling and fire the event of the footer
+		e.stopPropagation();
+		smartFooterStyle.display = "block";
+		overlayStyle.display = "none";
+		document.body.style.overflowY="scroll";
 	}
 
 
