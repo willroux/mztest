@@ -114,7 +114,8 @@ Sed facilisis aliquet tellus ut molestie. Duis ac lectus velit. Curabitur dui an
 		document.body.style.overflowY="scroll";
 	}
 
-	//add touch event on the smartFooter element
+	//add touchstart event on the smartFooter element
+	//slideDown the smartFooter
 	document.body.addEventListener('touchstart',function(e){
 		//to stop this event from bubling other events from body
 		e.stopPropagation();
@@ -132,6 +133,25 @@ Sed facilisis aliquet tellus ut molestie. Duis ac lectus velit. Curabitur dui an
 	    	}	    		 
     	},10);    	   	     
 	},false);
+
+	//add touchend event on the smartFooter element
+	//slideUp the smartFooter
+	document.body.addEventListener('touchend',function(e){
+			e.stopPropagation();
+
+			var smartFooterHeight= parseInt(smartFooterStyle.height);
+	    	//slideUp smartFooter height to 75px
+	    	var smartFooterSlideUp=setInterval(function(){
+	    		if(smartFooterHeight==75){
+	    			clearInterval(smartFooterSlideUp);
+	    		}
+	    		else{
+	    			smartFooterHeight++;
+	    			smartFooterStyle.height = smartFooterHeight+"px";
+	    		} 
+	    	},10);
+	},false);
+
 
 
 </script>
