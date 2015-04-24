@@ -51,19 +51,36 @@ Sed facilisis aliquet tellus ut molestie. Duis ac lectus velit. Curabitur dui an
 	bodyStyle.color = "#aaa";
 	bodyStyle.fontSize = "1.4em";
 
-	//create footer element and add style
-	var footer = document.createElement('div');
-	var footerStyle = footer.style;
-	footerStyle.position = "fixed";
-	footerStyle.width = "100%";
-	footerStyle.height = "75px";
-	footerStyle.bottom = "0px";
-	footerStyle.left = "0px";
-	footerStyle.backgroundImage = "url('footer.png')";
-	footerStyle.backgroundRepeat = "no-repeat";
-	footerStyle.backgroundSize = "100% 100%";
+	//create smartfooter element and add style
+	var smartFooter = document.createElement('div');
+	var smartFooterStyle = smartFooter.style;
+	smartFooterStyle.position = "fixed";
+	smartFooterStyle.width = "100%";
+	smartFooterStyle.height = "75px";
+	smartFooterStyle.bottom = "0px";
+	smartFooterStyle.left = "0px";
+	smartFooterStyle.backgroundImage = "url('footer.png')";
+	smartFooterStyle.backgroundRepeat = "no-repeat";
+	smartFooterStyle.backgroundSize = "100% 100%";
+	//by default element is visible
+	smartFooterStyle.display = "block";
+
 	//append the footer to the body after 1s
-	setTimeout(function(){document.body.appendChild(footer);},1000);
+	setTimeout(function(){document.body.appendChild(smartFooter);},1000);
+
+	//create overlay element and add style
+	var overlay = document.createElement('div');
+	var overlayStyle = overlay.style;
+	overlayStyle.position = "fixed";
+	overlayStyle.width = "100%";
+	overlayStyle.height = "100%";
+	overlayStyle.top = "0px";
+	overlayStyle.backgroundImage = "url('interstitial.png')";
+	overlayStyle.backgroundRepeat = "no-repeat";
+	overlayStyle.backgroundSize = "100% 100%";
+	//by default element is hidden
+	overlayStyle.display = "none";
+	document.body.appendChild(overlay);
 
 
 </script>
