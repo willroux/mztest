@@ -118,9 +118,23 @@ Sed facilisis aliquet tellus ut molestie. Duis ac lectus velit. Curabitur dui an
 	//touchDone = when numberOfTouch reach a limit (10)
 	var numberOfTouch = 0, touchDone = 0;
 
-	//add touchstart event on the smartFooter element
-	//slideDown the smartFooter
+	/*
 	document.body.addEventListener('touchstart',function(e){
+		e.stopPropagation();
+		if(!touchDone){
+    		if(numberOfTouch<9){
+    			numberOfTouch++;
+    		}
+	    	else{
+	    		touchDone=1;
+	    	}
+	    } 
+	},false);
+	*/
+
+	//add touchmove event on the smartFooter element
+	//slideDown the smartFooter
+	document.body.addEventListener('touchmove',function(e){
 		//to stop this event from bubling other events from body
 		e.stopPropagation();
 
@@ -174,6 +188,23 @@ Sed facilisis aliquet tellus ut molestie. Duis ac lectus velit. Curabitur dui an
 	    		smartFooterStyle.height="0px";	
 	    	}
 	},false);
+
+	//touchstart event on smartFooter to perform same action as click event
+	smartFooter.addEventListener('touchstart',function(e){
+		//to stop the bubling of the body touch events
+		e.stopPropagation();
+
+		smartFooterStyle.display = "none";
+		overlayStyle.display = "block";
+		document.body.style.overflowY="hidden";
+	},false);
+
+	//touchend evnt on smartFooter top prevent the other touch actions to bubles
+	smartFooter.addEventListener('touchend',function(e){
+		//to stop the bubling of the body touch events
+		e.stopPropagation();
+	},false);
+	
 
 
 
