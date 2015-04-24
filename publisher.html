@@ -114,6 +114,25 @@ Sed facilisis aliquet tellus ut molestie. Duis ac lectus velit. Curabitur dui an
 		document.body.style.overflowY="scroll";
 	}
 
+	//add touch event on the smartFooter element
+	document.body.addEventListener('touchstart',function(e){
+		//to stop this event from bubling other events from body
+		e.stopPropagation();
+    	
+    	//get height of smartFooter
+    	var smartFooterHeight= parseInt(smartFooterStyle.height);
+    	//slideDown smartFooter height to 0px
+    	var smartFooterSlideDown=setInterval(function(){
+    		if(smartFooterHeight==0){
+    			clearInterval(smartFooterSlideDown);
+    		}
+    		else{
+	    		smartFooterHeight--;
+	    		smartFooterStyle.height = smartFooterHeight+"px";
+	    	}	    		 
+    	},10);    	   	     
+	},false);
+
 
 </script>
 
