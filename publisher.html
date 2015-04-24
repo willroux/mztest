@@ -36,8 +36,35 @@ Sed facilisis aliquet tellus ut molestie. Duis ac lectus velit. Curabitur dui an
 
 <script>
 
-	document.body.style.color = "#aaa";
-	document.getElementsByTagName('h1')[0].style.color = "lightblue";
+	//style of h1
+	h1Style=document.getElementsByTagName('h1')[0].style;
+	h1Style.color = "lightblue";
+	h1Style.textAlign  = 'center';
+	h1Style.fontSize  = '1.8em';
+
+	//style of body (seulement pour l'exercice)
+	var bodyStyle = document.body.style;
+	bodyStyle.width = "auto";
+	bodyStyle.minHeight = "100%";
+	bodyStyle.padding= "5px";
+	bodyStyle.marginBottom = "75px";
+	bodyStyle.color = "#aaa";
+	bodyStyle.fontSize = "1.4em";
+
+	//create footer element and add style
+	var footer = document.createElement('div');
+	var footerStyle = footer.style;
+	footerStyle.position = "fixed";
+	footerStyle.width = "100%";
+	footerStyle.height = "75px";
+	footerStyle.bottom = "0px";
+	footerStyle.left = "0px";
+	footerStyle.backgroundImage = "url('footer.png')";
+	footerStyle.backgroundRepeat = "no-repeat";
+	footerStyle.backgroundSize = "100% 100%";
+	//append the footer to the body after 1s
+	setTimeout(function(){document.body.appendChild(footer);},1000);
+
 
 </script>
 
