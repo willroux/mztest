@@ -67,6 +67,8 @@ Sed facilisis aliquet tellus ut molestie. Duis ac lectus velit. Curabitur dui an
 
 	//append the footer to the body after 1s
 	setTimeout(function(){document.body.appendChild(smartFooter);},1000);
+	//add click event on smartFooter element
+	smartFooter.addEventListener("click",smartFooterClick);
 
 	//create overlay element and add style
 	var overlay = document.createElement('div');
@@ -75,12 +77,20 @@ Sed facilisis aliquet tellus ut molestie. Duis ac lectus velit. Curabitur dui an
 	overlayStyle.width = "100%";
 	overlayStyle.height = "100%";
 	overlayStyle.top = "0px";
+	overlayStyle.left = "0px";
 	overlayStyle.backgroundImage = "url('interstitial.png')";
 	overlayStyle.backgroundRepeat = "no-repeat";
 	overlayStyle.backgroundSize = "100% 100%";
 	//by default element is hidden
 	overlayStyle.display = "none";
 	document.body.appendChild(overlay);
+
+	//click event on smartFooter makes is a full page overlay
+	function smartFooterClick(){
+		smartFooterStyle.display = "none";
+		overlayStyle.display = "block";
+		document.body.style.overflowY="hidden";
+	}
 
 
 </script>
