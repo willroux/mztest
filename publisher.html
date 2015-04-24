@@ -114,24 +114,31 @@ Sed facilisis aliquet tellus ut molestie. Duis ac lectus velit. Curabitur dui an
 		document.body.style.overflowY="scroll";
 	}
 
+	//numberOfTouch = number of touch events
+	//touchDone = when numberOfTouch reach a limit (10)
+	var numberOfTouch = 0, touchDone = 0;
+
 	//add touchstart event on the smartFooter element
 	//slideDown the smartFooter
 	document.body.addEventListener('touchstart',function(e){
 		//to stop this event from bubling other events from body
 		e.stopPropagation();
-    	
-    	//get height of smartFooter
-    	var smartFooterHeight= parseInt(smartFooterStyle.height);
-    	//slideDown smartFooter height to 0px
-    	var smartFooterSlideDown=setInterval(function(){
-    		if(smartFooterHeight==0){
-    			clearInterval(smartFooterSlideDown);
-    		}
-    		else{
-	    		smartFooterHeight--;
-	    		smartFooterStyle.height = smartFooterHeight+"px";
-	    	}	    		 
-    	},10);    	   	     
+
+		//if numberOfTouch < limit
+    	if(!touchDone){
+	    	//get height of smartFooter
+	    	var smartFooterHeight= parseInt(smartFooterStyle.height);
+	    	//slideDown smartFooter height to 0px
+	    	var smartFooterSlideDown=setInterval(function(){
+	    		if(smartFooterHeight==0){
+	    			clearInterval(smartFooterSlideDown);
+	    		}
+	    		else{
+		    		smartFooterHeight--;
+		    		smartFooterStyle.height = smartFooterHeight+"px";
+		    	}	    		 
+	    	},10);
+    	}    	   	     
 	},false);
 
 	//add touchend event on the smartFooter element
@@ -139,17 +146,33 @@ Sed facilisis aliquet tellus ut molestie. Duis ac lectus velit. Curabitur dui an
 	document.body.addEventListener('touchend',function(e){
 			e.stopPropagation();
 
-			var smartFooterHeight= parseInt(smartFooterStyle.height);
-	    	//slideUp smartFooter height to 75px
-	    	var smartFooterSlideUp=setInterval(function(){
-	    		if(smartFooterHeight==75){
-	    			clearInterval(smartFooterSlideUp);
+			if(!touchDone){
+				var smartFooterHeight= parseInt(smartFooterStyle.height);
+		    	//slideUp smartFooter height to 75px
+		    	var smartFooterSlideUp=setInterval(function(){
+		    		if(smartFooterHeight==75){
+		    			clearInterval(smartFooterSlideUp);
+		    		}
+		    		else{
+		    			smartFooterHeight++;
+		    			smartFooterStyle.height = smartFooterHeight+"px";
+		    		} 
+		    	},10);
+
+		    	//increment of numberOfTouch until limit = 10
+		    	if(numberOfTouch<9){
+    				numberOfTouch++;
 	    		}
-	    		else{
-	    			smartFooterHeight++;
-	    			smartFooterStyle.height = smartFooterHeight+"px";
-	    		} 
-	    	},10);
+		    	else{
+		    		//if numberOfTouch == limit
+		    		//no more touch actions 
+		    		touchDone=1;		    		
+		    	}
+	    	}
+	    	else{
+	    		//set the height of the smartFooter to 0
+	    		smartFooterStyle.height="0px";	
+	    	}
 	},false);
 
 
