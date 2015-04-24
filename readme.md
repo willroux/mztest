@@ -62,4 +62,12 @@ Le format doit s'afficher correctement sur iPhone et sur un smartphone Android.
 Réponses à la question 3
 --------------------
 
+- implémentation de script assynchrone avec la méthode document.write() :
+
+Si l'Adserver fournit un format avec un script contenant la methode document.write(),
+il risque d'y avoir un bug lors de la récupération du format de manière asynchrone en Ajax.
+En effet le document.write() va surcharger la page avec son contenu et effacer le contenu déjà présent.
+Il faut donc intercepter toute présence de document.write() dans le format, avec une regex par exemple,
+et remplacer le document.write() par un element.innerHTML. 
+
 
